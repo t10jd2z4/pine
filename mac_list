@@ -1,0 +1,186 @@
+Legacy Devices (e.g., Printers, Scanners):
+    00:11:22:33:44:55
+    00:11:22:33:44:56
+    00:11:22:33:44:57
+    00:11:22:33:44:58
+    00:11:22:33:44:59
+
+IoT Devices (e.g., Sensors, Smart Home Appliances):
+
+    08:00:27:AA:BB:CC
+    08:00:27:DD:EE:FF
+    0C:37:DC:12:34:56
+    0C:37:DC:78:90:AB
+    1C:BA:8C:45:67:89
+
+Network Appliances (e.g., Switches, Routers):
+
+    00:1A:2B:00:11:22
+    00:1A:2B:33:44:55
+    BC:92:6B:78:90:AB
+    BC:92:6B:CD:EF:12
+    F4:B5:2F:98:76:54
+
+Game Consoles and Entertainment Devices:
+
+    00:0D:B0:AA:BB:CC
+    00:0D:B0:DD:EE:FF
+    BC:EF:45:12:34:56
+    BC:EF:45:78:90:AB
+    08:00:27:34:56:78
+    A0:63:91:12:34:56
+    A0:63:91:78:90:AB
+    70:85:C2:AA:BB:CC
+    70:85:C2:DD:EE:FF
+    50:E5:49:12:34:56
+Personal Computers (PCs) and Laptops:
+
+    Dell:
+        00:0A:F7:12:34:56
+        00:1C:23:45:67:89
+        00:21:6B:AB:CD:EF
+
+    HP (Hewlett Packard):
+        00:14:5E:78:90:AB
+        00:25:B3:CD:EF:12
+        00:2E:F4:56:78:90
+
+    Lenovo:
+        00:15:8D:23:45:67
+        00:1F:E9:89:AB:CD
+        00:23:AC:EF:12:34
+
+Servers and Enterprise Hardware:
+
+    Dell EMC:
+        00:0B:AD:78:9A:BC
+        00:1D:CE:EF:12:34
+        00:2F:BF:56:78:90
+
+    HPE (Hewlett Packard Enterprise):
+        00:17:DF:AB:CD:EF
+        00:2A:FE:34:56:78
+        00:3C:EF:89:AB:CD
+
+    Cisco Systems:
+        00:01:23:45:67:89
+        00:12:34:56:78:90
+        00:23:45:67:89:AB
+
+Networking Equipment and Components:
+
+    Cisco Systems:
+        00:1A:BC:DE:F1:23
+        00:2B:CD:EF:12:34
+        00:3C:DE:F0:12:34
+
+    Juniper Networks:
+        00:1D:EF:12:34:56
+        00:2E:F0:AB:CD:EF
+        00:3F:01:23:45:67
+
+    Aruba Networks:
+        00:1F:12:34:56:78
+        00:2A:AB:CD:EF:12
+        00:3B:CD:EF:01:23
+
+Components and Peripherals:
+
+    Intel (CPUs):
+        00:0A:F1:23:45:67
+        00:1B:E4:56:78:9A
+        00:2C:D6:78:90:AB
+
+    AMD (CPUs and GPUs):
+        00:1C:E5:67:89:AB
+        00:2D:F7:89:AB:CD
+        00:3E:98:76:54:32
+
+    NVIDIA (GPUs):
+        00:0D:76:54:32:10
+        00:2E:89:AB:CD:EF
+        00:3F:AB:CD:EF:12
+
+Mobile Devices and Tablets:
+
+    Apple (iPhone, iPad):
+        00:0E:AB:CD:EF:12
+        00:1F:CD:EF:12:34
+        00:2A:EF:12:34:56
+
+    Samsung (Galaxy Phones, Tablets):
+        00:1D:EF:12:34:56
+        00:2B:F1:23:45:67
+        00:3C:12:34:56:78
+
+    Google (Pixel Phones, Nexus Tablets):
+        00:0F:23:45:67:89
+        00:2C:45:67:89:AB
+        00:3D:56:78:90:AB
+
+Others:
+
+    Qualcomm (Mobile Processors):
+        00:0B:56:78:90:AB
+        00:2D:78:90:AB:CD
+        00:3E:90:AB:CD:EF
+
+    ARM (Chip Designs for Mobile Devices):
+        00:1A:78:90:AB:CD
+        00:2B:90:AB:CD:EF
+        00:3C:AB:CD:EF:12
+
+    Broadcom (Semiconductors, Networking):
+        00:0C:90:AB:CD:EF
+        00:2D:AB:CD:EF:12
+        00:3E:CD:EF:12:34
+Streaming Devices:
+
+    Amazon Fire TV Stick:
+        00:16:12:34:56:78
+        00:17:AB:CD:EF:12
+        00:18:EF:12:34:56
+
+    Roku Streaming Stick:
+        00:1A:34:56:78:90
+        00:1B:CD:EF:12:34
+        00:1C:EF:12:34:56
+
+    Google Chromecast:
+        00:1E:56:78:90:AB
+        00:1F:EF:12:34:56
+        00:20:12:34:56:78
+
+Gaming Consoles:
+
+    Sony PlayStation:
+        00:21:78:90:AB:CD
+        00:22:EF:12:34:56
+        00:23:34:56:78:90
+
+    Microsoft Xbox:
+        00:25:AB:CD:EF:12
+        00:26:12:34:56:78
+        00:27:EF:12:34:56
+
+    Nintendo Switch:
+        00:29:56:78:90:AB
+        00:2A:12:34:56:78
+        00:2B:EF:12:34:56
+
+Media Players:
+
+    Apple TV:
+        00:2D:78:90:AB:CD
+        00:2E:EF:12:34:56
+        00:2F:34:56:78:90
+
+    NVIDIA Shield TV:
+        00:31:AB:CD:EF:12
+        00:32:12:34:56:78
+        00:33:EF:12:34:56
+
+    Western Digital WD TV:
+        00:35:56:78:90:AB
+        00:36:12:34:56:78
+        00:37:EF:12:34:56
