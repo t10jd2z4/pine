@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Function to disable network interface
+disable_interface() {
+    echo "Disabling network interface..."
+    sudo ip link set dev eth0 down  # Replace 'eth0' with your interface name
+}
+
+# Function to enable network interface and display IP address
+enable_interface() {
+    echo "Enabling network interface..."
+    sudo ip link set dev eth0 up  # Replace 'eth0' with your interface name
+    sleep 2  # Wait for interface to come up
+    ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'  # Display IP address
+}
+
+# Function to randomize MAC address
+randomize_mac_address() {
+    echo "Randomizing MAC address..."
+    sudo macchanger -r eth0  # Replace 'eth0' with your interface name
+}
+
+# Function to set custom MAC address
+set_custom_mac_address() {
+    echo "Enter the custom MAC address (format: XX:XX:XX:XX:XX:XX):"
+    read custom_mac
+    sudo macchanger -m "$custom_mac" eth0  # Replace 'eth0' with your interface name
+}
+
+# Function to revert to original MAC address
+revert_mac_address() {
+    echo "Reverting to original MAC address..."
+    sudo macchanger -p eth0  # Replace 'eth0' with your interface name
+}
+
+# Main script
+while true; do
+    echo "Choose an option:"
+    echo "1. Disable interface, randomize MAC, enable interface, and show IP"
+    echo "2. Set custom MAC address"
+    echo "3. Revert to original MAC address and exit"
+
+    read option
+
+    case $option in
+        1)
+            disable_interface
+            randomize_mac_address
+            enable_interface
+            ;;
+        2)
+            set_custom_mac_address
+            ;;
+        3)
+            revert_mac_address
+            break
+            ;;
+        *)
+            echo "Invalid option. Please choose 1, 2, or 3."
+            ;;
+    esac
+done
+
+exit 0
