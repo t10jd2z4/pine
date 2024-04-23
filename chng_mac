@@ -1,64 +1,120 @@
 #!/bin/bash
 
-# Function to disable network interface
-disable_interface() {
-    echo "Disabling network interface..."
-    sudo ip link set dev eth0 down  # Replace 'eth0' with your interface name
+# Function to change MAC address and obtain IP address
+change_mac_and_get_ip() {
+    local mac_address="$1"
+    
+    # Change MAC address
+    sudo macchanger -m "$mac_address" eth0  # Replace 'eth0' with your network interface name
+    
+    # Release and renew IP address
+    sudo dhclient -r eth0
+    sudo dhclient eth0
+    
+    # Get and display IP address
+    ip_address=$(ip addr show eth0 | grep -oP 'inet \K[\d.]+')
+    echo "Current IP address with MAC address $mac_address: $ip_address"
+    
+    # Save IP address to file
+    echo "$ip_address" >> ip.txt
 }
 
-# Function to enable network interface and display IP address
-enable_interface() {
-    echo "Enabling network interface..."
-    sudo ip link set dev eth0 up  # Replace 'eth0' with your interface name
-    sleep 2  # Wait for interface to come up
-    ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'  # Display IP address
-}
-
-# Function to randomize MAC address
-randomize_mac_address() {
-    echo "Randomizing MAC address..."
-    sudo macchanger -r eth0  # Replace 'eth0' with your interface name
-}
-
-# Function to set custom MAC address
-set_custom_mac_address() {
-    echo "Enter the custom MAC address (format: XX:XX:XX:XX:XX:XX):"
-    read custom_mac
-    sudo macchanger -m "$custom_mac" eth0  # Replace 'eth0' with your interface name
-}
-
-# Function to revert to original MAC address
-revert_mac_address() {
-    echo "Reverting to original MAC address..."
-    sudo macchanger -p eth0  # Replace 'eth0' with your interface name
-}
-
-# Main script
+# Main menu options
 while true; do
-    echo "Choose an option:"
-    echo "1. Disable interface, randomize MAC, enable interface, and show IP"
-    echo "2. Set custom MAC address"
-    echo "3. Revert to original MAC address and exit"
-
-    read option
+    echo "Options:"
+    echo "1. Change MAC address based on device type"
+    echo "2. Change to predefined MAC addresses and get IP"
+    echo "3. Change to custom MAC address and get IP"
+    echo "4. Revert to original MAC address"
+    echo "5. Exit"
+    read -p "Enter option (1-5): " option
 
     case $option in
         1)
-            disable_interface
-            randomize_mac_address
-            enable_interface
+            echo "Choose device type:"
+            echo "a. Legacy Devices (Printers, Scanners)"
+            echo "b. IoT Devices (Sensors, Smart Home Appliances)"
+            echo "c. Network Appliances (Switches, Routers)"
+            echo "d. Game Consoles and Entertainment Devices"
+            echo "e. Personal Computers (PCs) and Laptops"
+            echo "f. Servers and Enterprise Hardware"
+            echo "g. Networking Equipment and Components"
+            echo "h. Components and Peripherals"
+            echo "i. Mobile Devices and Tablets"
+            echo "j. Others"
+            read -p "Enter device type (a-j): " device_type
+
+            case $device_type in
+                a)  # Legacy Devices
+                    change_mac_and_get_ip "00:11:22:33:44:55"
+                    ;;
+                b)  # IoT Devices
+                    change_mac_and_get_ip "08:00:27:AA:BB:CC"
+                    ;;
+                c)  # Network Appliances
+                    change_mac_and_get_ip "00:1A:2B:00:11:22"
+                    ;;
+                d)  # Game Consoles and Entertainment Devices
+                    change_mac_and_get_ip "00:0D:B0:AA:BB:CC"
+                    ;;
+                e)  # Personal Computers (PCs) and Laptops (Dell)
+                    change_mac_and_get_ip "00:0A:F7:12:34:56"
+                    ;;
+                f)  # Servers and Enterprise Hardware (Dell EMC)
+                    change_mac_and_get_ip "00:0B:AD:78:9A:BC"
+                    ;;
+                g)  # Networking Equipment and Components (Cisco Systems)
+                    change_mac_and_get_ip "00:01:23:45:67:89"
+                    ;;
+                h)  # Components and Peripherals (Intel CPUs)
+                    change_mac_and_get_ip "00:0A:F1:23:45:67"
+                    ;;
+                i)  # Mobile Devices and Tablets (Apple iPhone)
+                    change_mac_and_get_ip "00:0E:AB:CD:EF:12"
+                    ;;
+                j)  # Others (Qualcomm Mobile Processors)
+                    change_mac_and_get_ip "00:0B:56:78:90:AB"
+                    ;;
+                *)
+                    echo "Invalid device type. Please try again."
+                    ;;
+            esac
             ;;
         2)
-            set_custom_mac_address
+            # Predefined MAC addresses
+            predefined_macs=(
+                "00:11:22:33:44:55"
+                "08:00:27:AA:BB:CC"
+                "00:1A:2B:00:11:22"
+                "00:0D:B0:AA:BB:CC"
+                "00:0A:F7:12:34:56"
+                "00:0B:AD:78:9A:BC"
+                "00:01:23:45:67:89"
+                "00:0A:F1:23:45:67"
+                "00:0E:AB:CD:EF:12"
+                "00:0B:56:78:90:AB"
+            )
+
+            for mac in "${predefined_macs[@]}"; do
+                change_mac_and_get_ip "$mac"
+                sleep 1  # Optional delay between MAC changes
+            done
             ;;
         3)
-            revert_mac_address
-            break
+            read -p "Enter custom MAC address: " custom_mac
+            change_mac_and_get_ip "$custom_mac"
+            ;;
+        4)
+            # Revert to original MAC address
+            sudo macchanger -p eth0  # Replace 'eth0' with your network interface name
+            echo "Reverted to original MAC address."
+            ;;
+        5)
+            echo "Exiting..."
+            exit 0
             ;;
         *)
-            echo "Invalid option. Please choose 1, 2, or 3."
+            echo "Invalid option. Please try again."
             ;;
     esac
 done
-
-exit 0
